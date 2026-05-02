@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos | Habana 5</title>
+    <meta name="description" content="Mira a Habana 5 en video y conoce su presencia en escena.">
+    <link rel="icon" type="image/jpeg" href="../img/Logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="../styles.css?v=20260428-7">
+</head>
+<body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <header class="hero hero-subpage" id="inicio">
+        <nav class="nav" aria-label="Navegacion principal">
+            <a class="brand" href="../">
+                <img src="../img/Logo.jpeg" alt="Logo de Habana 5">
+                <span>Habana 5</span>
+            </a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">
+                <span aria-hidden="true">&#9776;</span>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="../">Inicio</a>
+                <a href="../historia/">Historia</a>
+                <a href="../integrantes/">Integrantes</a>
+                <a href="../videos/">Videos</a>
+                <a href="../contacto/">Contacto</a>
+            </div>
+        </nav>
+
+        <div class="subpage-intro">
+            <p class="eyebrow">Videos</p>
+            <h1>Una interfaz audiovisual para ver a Habana 5 en accion.</h1>
+            <p class="lead">
+                Aqui encuentras el video destacado del grupo con una vista clara, centrada y lista para compartir.
+            </p>
+            <div class="subpage-actions">
+                <a class="button button-primary" href="../">Volver al inicio</a>
+                <a class="button button-secondary" href="../contacto/">Ir a contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="section videos">
+            <div class="section-stage section-stage-videos">
+                <div class="section-stage-head">
+                    <a class="section-return" href="../">Volver al inicio</a>
+                </div>
+                <div class="section-heading">
+                    <h2>VIDEOS</h2>
+                </div>
+                <div class="video-placeholder">
+                    <article class="video-card video-card-main">
+                        <div class="video-frame">
+                            <iframe
+                                src="https://www.youtube.com/embed/7eWfH9zRCnk"
+                                title="Habana 5 en YouTube"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../img/Logo.jpeg" alt="Logo de Habana 5">
+                <div>
+                    <strong>Habana 5</strong>
+                    <p class="muted">Musica cubana en vivo para eventos y celebraciones</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <nav aria-label="Enlaces de pie de pagina">
+                    <a href="../">Inicio</a>
+                    <a href="../historia/">Historia</a>
+                    <a href="../integrantes/">Integrantes</a>
+                    <a href="../contacto/">Contacto</a>
+                </nav>
+                <div class="socials">
+                    <a href="https://www.instagram.com/grupohabana5?igsh=dW5kMTRxcnV6ZjF5" target="_blank" rel="noreferrer">Instagram</a>
+                    <a href="https://www.tiktok.com/@grupohabana5?_r=1&_t=ZS-9539MWyPDKH" target="_blank" rel="noreferrer">TikTok</a>
+                </div>
+            </div>
+            <div class="footer-copy">
+                <p class="muted">&copy; <span id="year"></span> Habana 5. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const year = document.getElementById("year");
+            if (year) {
+                year.textContent = new Date().getFullYear();
+            }
+
+            const toggle = document.querySelector(".nav-toggle");
+            const nav = document.querySelector(".nav");
+            const links = document.querySelector(".nav-links");
+            const navAnchors = links ? links.querySelectorAll("a") : [];
+
+            if (toggle && nav && links) {
+                function setOpen(open) {
+                    toggle.setAttribute("aria-expanded", String(open));
+                    nav.classList.toggle("is-open", open);
+                    document.body.classList.toggle("menu-open", open && window.innerWidth <= 768);
+                }
+
+                toggle.addEventListener("click", function () {
+                    const expanded = toggle.getAttribute("aria-expanded") === "true";
+                    setOpen(!expanded);
+                });
+
+                navAnchors.forEach(function (anchor) {
+                    anchor.addEventListener("click", function () {
+                        if (window.innerWidth <= 768) {
+                            setOpen(false);
+                        }
+                    });
+                });
+
+                document.addEventListener("click", function (event) {
+                    if (window.innerWidth > 768) {
+                        return;
+                    }
+
+                    if (!nav.contains(event.target) && nav.classList.contains("is-open")) {
+                        setOpen(false);
+                    }
+                });
+
+                window.addEventListener("resize", function () {
+                    if (window.innerWidth > 768) {
+                        setOpen(false);
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

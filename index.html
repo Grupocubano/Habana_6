@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habana 5 | Musica cubana en vivo</title>
+    <meta
+        name="description"
+        content="Habana 5 es una agrupacion cubana emergente con sabor, energia y repertorio en vivo para eventos, fiestas y celebraciones."
+    >
+    <link rel="icon" type="image/jpeg" href="img/Logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css?v=20260502-1">
+</head>
+<body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <header class="hero home-hero" id="inicio">
+        <nav class="nav" aria-label="Navegacion principal">
+            <a class="brand" href="./">
+                <img src="img/Logo.jpeg" alt="Logo de Habana 5">
+                <span>Habana 5</span>
+            </a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">
+                <span aria-hidden="true">&#9776;</span>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="historia/">Historia</a>
+                <a href="integrantes/">Integrantes</a>
+                <a href="videos/">Videos</a>
+                <a href="contacto/">Contacto</a>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <div class="hero-copy">
+                <p class="eyebrow">Musica cubana en vivo</p>
+                <h1>Habana 5</h1>
+                <p class="lead">
+                    Son, salsa, timba y bolero para eventos que quieren sabor cubano,
+                    presencia elegante y una pista llena desde el primer tema.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="button button-primary" href="contacto/">Solicitar presentacion</a>
+                    <a class="button button-secondary" href="https://wa.me/573116714704" target="_blank" rel="noreferrer">Escribir por WhatsApp</a>
+                </div>
+
+                <ul class="hero-facts" aria-label="Datos rapidos de Habana 5">
+                    <li>
+                        <strong>5</strong>
+                        <span>integrantes</span>
+                    </li>
+                    <li>
+                        <strong>Live</strong>
+                        <span>show en vivo</span>
+                    </li>
+                    <li>
+                        <strong>Cuba</strong>
+                        <span>raiz musical</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main id="main" class="home-main">
+        <section class="section home-essentials" aria-labelledby="essentials-title">
+            <div class="section-heading">
+                <p class="eyebrow">Lo esencial</p>
+                <h2 id="essentials-title">Energia cubana, formato adaptable y reserva directa.</h2>
+            </div>
+            <div class="essential-grid">
+                <article class="essential-card">
+                    <span>01</span>
+                    <h3>Show en vivo</h3>
+                    <p>Musica bailable con sabor tradicional y sonido actual.</p>
+                </article>
+                <article class="essential-card">
+                    <span>02</span>
+                    <h3>Para eventos</h3>
+                    <p>Bodas, celebraciones privadas, empresas y escenarios especiales.</p>
+                </article>
+                <article class="essential-card essential-card-action">
+                    <span>03</span>
+                    <h3>Contacto rapido</h3>
+                    <p>Agenda la presentacion por WhatsApp o formulario.</p>
+                    <a href="videos/">Ver videos</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="img/Logo.jpeg" alt="Logo de Habana 5">
+                <div>
+                    <strong>Habana 5</strong>
+                    <p class="muted">Musica cubana en vivo para eventos y celebraciones</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <nav aria-label="Enlaces de pie de pagina">
+                    <a href="historia/">Historia</a>
+                    <a href="integrantes/">Integrantes</a>
+                    <a href="videos/">Videos</a>
+                    <a href="contacto/">Contacto</a>
+                </nav>
+                <div class="socials">
+                    <a href="https://www.instagram.com/grupohabana5?igsh=dW5kMTRxcnV6ZjF5" target="_blank" rel="noreferrer">Instagram</a>
+                    <a href="https://www.tiktok.com/@grupohabana5?_r=1&_t=ZS-9539MWyPDKH" target="_blank" rel="noreferrer">TikTok</a>
+                </div>
+            </div>
+            <div class="footer-copy">
+                <p class="muted">&copy; <span id="year"></span> Habana 5. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const year = document.getElementById("year");
+            if (year) {
+                year.textContent = new Date().getFullYear();
+            }
+
+            const toggle = document.querySelector(".nav-toggle");
+            const nav = document.querySelector(".nav");
+            const links = document.querySelector(".nav-links");
+            const navAnchors = links ? links.querySelectorAll("a") : [];
+
+            if (toggle && nav && links) {
+                function setOpen(open) {
+                    toggle.setAttribute("aria-expanded", String(open));
+                    nav.classList.toggle("is-open", open);
+                    document.body.classList.toggle("menu-open", open && window.innerWidth <= 768);
+                }
+
+                toggle.addEventListener("click", function () {
+                    const expanded = toggle.getAttribute("aria-expanded") === "true";
+                    setOpen(!expanded);
+                });
+
+                navAnchors.forEach(function (anchor) {
+                    anchor.addEventListener("click", function () {
+                        if (window.innerWidth <= 768) {
+                            setOpen(false);
+                        }
+                    });
+                });
+
+                document.addEventListener("click", function (event) {
+                    if (window.innerWidth > 768) {
+                        return;
+                    }
+
+                    if (!nav.contains(event.target) && nav.classList.contains("is-open")) {
+                        setOpen(false);
+                    }
+                });
+
+                window.addEventListener("resize", function () {
+                    if (window.innerWidth > 768) {
+                        setOpen(false);
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
