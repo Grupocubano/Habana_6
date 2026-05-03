@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas | Habana 5</title>
+    <meta name="description" content="Solicita una reserva para Habana 5 con fecha, lugar y datos del evento.">
+    <link rel="icon" type="image/jpeg" href="/Habana_5/img/Logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="/Habana_5/styles.css?v=20260503-1">
+</head>
+<body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <header class="hero hero-subpage" id="inicio">
+        <nav class="nav" aria-label="Navegacion principal">
+            <a class="brand" href="/Habana_5/">
+                <img src="/Habana_5/img/Logo.jpeg" alt="Logo de Habana 5">
+                <span>Habana 5</span>
+            </a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">
+                <span aria-hidden="true">&#9776;</span>
+            </button>
+            <div class="nav-links" id="nav-links">
+                <a href="/Habana_5/">Inicio</a>
+                <a href="/Habana_5/historia/">Historia</a>
+                <a href="/Habana_5/integrantes/">Integrantes</a>
+                <a href="/Habana_5/videos/">Videos</a>
+                <a href="/Habana_5/reservas/">Reservas</a>
+                <a href="/Habana_5/contacto/">Contacto</a>
+            </div>
+        </nav>
+
+        <div class="subpage-intro">
+            <p class="eyebrow">Reservas</p>
+            <h1>Reserva una fecha para tu evento.</h1>
+            <p class="lead">
+                Llena el formulario y nos cuentas lo necesario para revisar disponibilidad.
+            </p>
+            <div class="subpage-actions">
+                <a class="button button-primary" href="#reservation-form">Llenar formulario</a>
+                <a class="button button-secondary" href="/Habana_5/contacto/">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="section contact">
+            <div class="section-stage section-stage-contact reservation-stage">
+                <div class="section-stage-head">
+                    <a class="section-return" href="/Habana_5/contacto/">Volver a contacto</a>
+                </div>
+                <section class="reservation-block reservation-block-standalone" aria-labelledby="reservation-title">
+                    <div class="reservation-head">
+                        <p class="eyebrow">Solicitud</p>
+                        <h2 id="reservation-title">Datos para revisar tu reserva.</h2>
+                        <p>
+                            Al enviar, se abrira WhatsApp con la solicitud. Tambien quedara lista una confirmacion
+                            para el numero registrado.
+                        </p>
+                    </div>
+                    <form
+                        class="reservation-form"
+                        id="reservation-form"
+                        data-reservation-endpoint=""
+                        data-admin-whatsapp="573116714704"
+                    >
+                        <div class="form-grid">
+                            <label class="form-field" for="reservation-name">
+                                Nombre
+                                <input id="reservation-name" name="nombre" type="text" autocomplete="name" required>
+                            </label>
+                            <label class="form-field" for="reservation-phone">
+                                WhatsApp
+                                <input id="reservation-phone" name="whatsapp" type="tel" autocomplete="tel" placeholder="Ej: 3116714704" required>
+                            </label>
+                            <label class="form-field" for="reservation-email">
+                                Correo
+                                <input id="reservation-email" name="correo" type="email" autocomplete="email">
+                            </label>
+                            <label class="form-field" for="reservation-event">
+                                Tipo de evento
+                                <select id="reservation-event" name="tipo_evento" required>
+                                    <option value="">Selecciona una opcion</option>
+                                    <option value="Boda">Boda</option>
+                                    <option value="Fiesta privada">Fiesta privada</option>
+                                    <option value="Evento empresarial">Evento empresarial</option>
+                                    <option value="Festival o escenario">Festival o escenario</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </label>
+                            <label class="form-field" for="reservation-date">
+                                Fecha
+                                <input id="reservation-date" name="fecha" type="date" required>
+                            </label>
+                            <label class="form-field" for="reservation-time">
+                                Hora aproximada
+                                <input id="reservation-time" name="hora" type="time">
+                            </label>
+                            <label class="form-field" for="reservation-place">
+                                Ciudad o lugar
+                                <input id="reservation-place" name="lugar" type="text" autocomplete="address-level2" required>
+                            </label>
+                            <label class="form-field" for="reservation-guests">
+                                Invitados
+                                <input id="reservation-guests" name="invitados" type="number" min="1" inputmode="numeric">
+                            </label>
+                            <label class="form-field form-field-full" for="reservation-message">
+                                Detalles del evento
+                                <textarea
+                                    id="reservation-message"
+                                    name="detalles"
+                                    rows="5"
+                                    placeholder="Duracion, espacio, presupuesto aproximado o cualquier dato importante."
+                                ></textarea>
+                            </label>
+                        </div>
+                        <div class="form-actions">
+                            <button class="button button-primary" type="submit">Enviar solicitud</button>
+                            <a class="button button-secondary confirmation-link" id="client-confirmation-link" href="#" target="_blank" rel="noreferrer" hidden>
+                                Confirmacion al numero registrado
+                            </a>
+                            <p class="reservation-status" id="reservation-status" role="status" aria-live="polite"></p>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="/Habana_5/img/Logo.jpeg" alt="Logo de Habana 5">
+                <div>
+                    <strong>Habana 5</strong>
+                    <p class="muted">Musica cubana en vivo para eventos</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <nav aria-label="Enlaces de pie de pagina">
+                    <a href="/Habana_5/">Inicio</a>
+                    <a href="/Habana_5/historia/">Historia</a>
+                    <a href="/Habana_5/integrantes/">Integrantes</a>
+                    <a href="/Habana_5/videos/">Videos</a>
+                    <a href="/Habana_5/reservas/">Reservas</a>
+                    <a href="/Habana_5/contacto/">Contacto</a>
+                </nav>
+                <div class="socials">
+                    <a href="https://www.instagram.com/grupohabana5?igsh=dW5kMTRxcnV6ZjF5" target="_blank" rel="noreferrer">Instagram</a>
+                    <a href="https://www.tiktok.com/@grupohabana5?_r=1&_t=ZS-9539MWyPDKH" target="_blank" rel="noreferrer">TikTok</a>
+                </div>
+            </div>
+            <div class="footer-copy">
+                <p class="muted">&copy; <span id="year"></span> Habana 5. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const year = document.getElementById("year");
+            if (year) {
+                year.textContent = new Date().getFullYear();
+            }
+
+            const toggle = document.querySelector(".nav-toggle");
+            const nav = document.querySelector(".nav");
+            const links = document.querySelector(".nav-links");
+            const navAnchors = links ? links.querySelectorAll("a") : [];
+
+            if (toggle && nav && links) {
+                function setOpen(open) {
+                    toggle.setAttribute("aria-expanded", String(open));
+                    nav.classList.toggle("is-open", open);
+                    document.body.classList.toggle("menu-open", open && window.innerWidth <= 768);
+                }
+
+                toggle.addEventListener("click", function () {
+                    const expanded = toggle.getAttribute("aria-expanded") === "true";
+                    setOpen(!expanded);
+                });
+
+                navAnchors.forEach(function (anchor) {
+                    anchor.addEventListener("click", function () {
+                        if (window.innerWidth <= 768) {
+                            setOpen(false);
+                        }
+                    });
+                });
+
+                document.addEventListener("click", function (event) {
+                    if (window.innerWidth > 768) {
+                        return;
+                    }
+
+                    if (!nav.contains(event.target) && nav.classList.contains("is-open")) {
+                        setOpen(false);
+                    }
+                });
+
+                window.addEventListener("resize", function () {
+                    if (window.innerWidth > 768) {
+                        setOpen(false);
+                    }
+                });
+            }
+
+            const reservationForm = document.getElementById("reservation-form");
+            const reservationStatus = document.getElementById("reservation-status");
+            const confirmationLink = document.getElementById("client-confirmation-link");
+            const reservationDate = document.getElementById("reservation-date");
+
+            if (reservationDate) {
+                reservationDate.min = new Date().toISOString().slice(0, 10);
+            }
+
+            function normalizePhone(value) {
+                const digits = String(value || "").replace(/\D/g, "");
+
+                if (digits.length === 10) {
+                    return "57" + digits;
+                }
+
+                return digits;
+            }
+
+            function buildAdminMessage(values) {
+                return [
+                    "Solicitud de reserva - Habana 5",
+                    "",
+                    "Nombre: " + values.nombre,
+                    "WhatsApp: " + values.whatsapp,
+                    values.correo ? "Correo: " + values.correo : "",
+                    "Tipo de evento: " + values.tipo_evento,
+                    "Fecha: " + values.fecha,
+                    values.hora ? "Hora: " + values.hora : "",
+                    "Lugar: " + values.lugar,
+                    values.invitados ? "Invitados: " + values.invitados : "",
+                    values.detalles ? "Detalles: " + values.detalles : ""
+                ].filter(Boolean).join("\n");
+            }
+
+            function buildClientMessage(values) {
+                return [
+                    "Hola " + values.nombre + ".",
+                    "Recibimos tu solicitud de reserva para Habana 5.",
+                    "Evento: " + values.tipo_evento,
+                    "Fecha: " + values.fecha,
+                    "Lugar: " + values.lugar,
+                    "Pronto revisaremos disponibilidad y te responderemos por este mismo WhatsApp."
+                ].join("\n");
+            }
+
+            if (reservationForm) {
+                reservationForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    if (!reservationForm.reportValidity()) {
+                        return;
+                    }
+
+                    const data = Object.fromEntries(new FormData(reservationForm).entries());
+                    const endpoint = reservationForm.dataset.reservationEndpoint.trim();
+                    const adminPhone = reservationForm.dataset.adminWhatsapp || "573116714704";
+                    const clientPhone = normalizePhone(data.whatsapp);
+                    const clientMessage = buildClientMessage(data);
+                    const request = {
+                        ...data,
+                        whatsapp_normalizado: clientPhone,
+                        mensaje_confirmacion_cliente: clientMessage,
+                        enviar_confirmacion_cliente: true,
+                        origen: "web",
+                        enviada_en: new Date().toISOString()
+                    };
+
+                    function showClientConfirmationLink() {
+                        if (!confirmationLink || !clientPhone) {
+                            return;
+                        }
+
+                        confirmationLink.href = "https://wa.me/" + clientPhone + "?text=" + encodeURIComponent(clientMessage);
+                        confirmationLink.hidden = false;
+                    }
+
+                    function sendToWhatsapp() {
+                        const message = encodeURIComponent(buildAdminMessage(data));
+                        window.open("https://wa.me/" + adminPhone + "?text=" + message, "_blank", "noopener");
+                        showClientConfirmationLink();
+
+                        if (reservationStatus) {
+                            reservationStatus.textContent = "Se abrio WhatsApp con la solicitud. Tambien dejamos lista la confirmacion al numero registrado.";
+                        }
+                    }
+
+                    if (confirmationLink) {
+                        confirmationLink.hidden = true;
+                    }
+
+                    if (!endpoint) {
+                        sendToWhatsapp();
+                        return;
+                    }
+
+                    fetch(endpoint, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(request)
+                    })
+                        .then(function (response) {
+                            if (!response.ok) {
+                                throw new Error("No se pudo enviar la solicitud.");
+                            }
+
+                            if (reservationStatus) {
+                                reservationStatus.textContent = "Solicitud enviada. La confirmacion se enviara al WhatsApp registrado.";
+                            }
+                            reservationForm.reset();
+                        })
+                        .catch(function () {
+                            sendToWhatsapp();
+                        });
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
