@@ -107,7 +107,7 @@
                                 <input id="reservation-place" name="lugar" type="text" autocomplete="address-level2" required>
                             </label>
                             <label class="form-field" for="reservation-guests">
-                                Invitados
+                                Número de Invitados
                                 <input id="reservation-guests" name="invitados" type="number" min="1" inputmode="numeric">
                             </label>
                             <label class="form-field form-field-full" for="reservation-message">
@@ -295,6 +295,10 @@
 
                         if (reservationStatus) {
                             reservationStatus.textContent = "Se abrio WhatsApp con la solicitud. Tambien dejamos lista la confirmacion al numero registrado.";
+                        }
+                        // Limpiar el formulario incluso cuando se abre WhatsApp directamente
+                        if (reservationForm) {
+                            reservationForm.reset();
                         }
                     }
 
