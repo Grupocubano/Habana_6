@@ -215,6 +215,31 @@
             const reservationStatus = document.getElementById("reservation-status");
             const confirmationLink = document.getElementById("client-confirmation-link");
             const reservationDate = document.getElementById("reservation-date");
+            const reservationTime = document.getElementById("reservation-time");
+
+            // Fallback para navegadores in-app (Instagram) que pueden comportarse mal
+            // con `type="date"` y `type="time"`. Cambiamos a `text` y añadimos
+            // placeholders/patterns para evitar que la página se salga del contexto.
+            try {
+                const ua = navigator.userAgent || "";
+                const isInstagramInApp = /Instagram/.test(ua) || /FBAN|FBAV/.test(ua);
+
+                if (isInstagramInApp) {
+                    if (reservationDate) {
+                        reservationDate.type = "text";
+                        reservationDate.placeholder = "YYYY-MM-DD";
+                        reservationDate.pattern = "\\d{4}-\\d{2}-\\d{2}";
+                    }
+
+                    if (reservationTime) {
+                        reservationTime.type = "text";
+                        reservationTime.placeholder = "HH:MM";
+                        reservationTime.pattern = "\\d{2}:\\d{2}";
+                    }
+                }
+            } catch (e) {
+                // No bloquear la ejecución si hay problemas de detección
+            }
 
             if (reservationDate) {
                 reservationDate.min = new Date().toISOString().slice(0, 10);
