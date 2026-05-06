@@ -13,6 +13,7 @@
         rel="stylesheet"
     >
     <link rel="stylesheet" href="/Habana_5/styles.css?v=20260503-1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -162,6 +163,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         (function () {
             const year = document.getElementById("year");
@@ -217,14 +219,32 @@
             const reservationDate = document.getElementById("reservation-date");
             const reservationTime = document.getElementById("reservation-time");
 
-            // Fallback para navegadores in-app (Instagram) que pueden comportarse mal
-            // con `type="date"` y `type="time"`. Cambiamos a `text` y añadimos
-            // placeholders/patterns para evitar que la página se salga del contexto.
+            // Inicializar Flatpickr si está disponible; como fallback, aplicar
+            // comportamiento específico para navegadores in-app (Instagram).
             try {
                 const ua = navigator.userAgent || "";
                 const isInstagramInApp = /Instagram/.test(ua) || /FBAN|FBAV/.test(ua);
 
-                if (isInstagramInApp) {
+                if (typeof flatpickr !== "undefined") {
+                    if (reservationDate) {
+                        flatpickr(reservationDate, {
+                            dateFormat: "Y-m-d",
+                            allowInput: true,
+                            disableMobile: true
+                        });
+                    }
+
+                    if (reservationTime) {
+                        flatpickr(reservationTime, {
+                            enableTime: true,
+                            noCalendar: true,
+                            time_24hr: true,
+                            dateFormat: "H:i",
+                            allowInput: true,
+                            disableMobile: true
+                        });
+                    }
+                } else if (isInstagramInApp) {
                     if (reservationDate) {
                         reservationDate.type = "text";
                         reservationDate.placeholder = "YYYY-MM-DD";
