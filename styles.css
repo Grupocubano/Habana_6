@@ -196,12 +196,18 @@ body::before {
 }
 
 .brand img {
-    width: 3.3rem;
-    height: 3.3rem;
+    width: 4.8rem;
+    height: 4.8rem;
     object-fit: cover;
     border-radius: 50%;
     border: 2px solid rgba(215, 177, 105, 0.55);
     box-shadow: 0 0 0 6px rgba(76, 161, 224, 0.08);
+}
+
+/* Large header logo at inicio (desktop) */
+.home-hero .brand img {
+    width: 5.6rem;
+    height: 5.6rem;
 }
 
 .nav-links a {
@@ -591,6 +597,17 @@ body::before {
     border-radius: 50%;
     background: radial-gradient(circle, rgba(228, 194, 116, 0.22), transparent 70%);
     pointer-events: none;
+}
+
+/* Instrumentos en dorado: aplicar la clase `instrument-golden` al contenedor o a la imagen */
+.instrument-golden img,
+.instrument-golden {
+    filter: sepia(0.9) saturate(2.8) hue-rotate(-10deg) brightness(1.03) contrast(1.04);
+    mix-blend-mode: multiply;
+    transition: filter 220ms ease, transform 220ms ease;
+}
+.instrument-golden img:hover {
+    transform: scale(1.02);
 }
 
 .hero-badge {
@@ -1518,13 +1535,25 @@ body::before {
     min-height: 88svh;
     padding-bottom: 2.4rem;
     background:
-        linear-gradient(90deg, rgba(3, 11, 21, 0.9) 0%, rgba(4, 16, 31, 0.78) 45%, rgba(4, 16, 31, 0.34) 100%),
-        linear-gradient(180deg, rgba(3, 11, 21, 0.18), rgba(3, 11, 21, 0.72)),
+        linear-gradient(90deg, rgba(3, 11, 21, 0.6) 0%, rgba(4, 16, 31, 0.52) 45%, rgba(4, 16, 31, 0.18) 100%),
+        linear-gradient(180deg, rgba(3, 11, 21, 0.08), rgba(3, 11, 21, 0.42)),
         url("img/Foto_Todos.jpeg") center 38% / cover no-repeat;
+    background-blend-mode: overlay, normal, normal;
 }
 
 .home-hero::before {
-    display: none;
+    /* mostrar logo grande como marca de agua para fondo */
+    display: block;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("img/Logo.jpeg");
+    background-repeat: no-repeat;
+    background-position: center 30%;
+    background-size: 70vmax;
+    opacity: 0.06;
+    pointer-events: none;
+    mix-blend-mode: overlay;
 }
 
 .home-hero::after {
@@ -1838,8 +1867,8 @@ body::before {
     }
 
     .brand img {
-        width: 2.9rem;
-        height: 2.9rem;
+        width: 3.6rem;
+        height: 3.6rem;
     }
 
     .hero,
