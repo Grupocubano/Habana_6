@@ -1016,6 +1016,27 @@ body::before {
     gap: 1rem;
 }
 
+/* Instruments gallery */
+.instruments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    max-width: var(--max-width);
+    margin: 1.25rem auto 0;
+}
+.instruments-grid figure {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(240, 212, 146, 0.12);
+}
+.instruments-grid img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
 .member-card {
     position: relative;
     padding: 1.35rem;
@@ -2057,4 +2078,36 @@ body::before {
     .home-hero .hero-copy h1 {
         font-size: 3.2rem;
     }
+}
+
+/* Mini-logos posicionados en las esquinas (decorativos) */
+.mini-logos {
+    pointer-events: none;
+}
+.mini-logos .mini-logo {
+    position: fixed;
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid rgba(215, 177, 105, 0.6);
+    box-shadow: 0 8px 18px rgba(1, 8, 18, 0.28);
+    z-index: 6;
+    opacity: 0.98;
+    transition: transform 220ms ease, opacity 220ms ease;
+}
+.mini-logos .mini-top-left { top: 1rem; left: 1rem; }
+.mini-logos .mini-top-right { top: 1rem; right: 1rem; }
+.mini-logos .mini-bottom-left { bottom: 1rem; left: 1rem; }
+.mini-logos .mini-bottom-right { bottom: 1rem; right: 1rem; }
+
+@media (max-width: 720px) {
+    .mini-logos .mini-logo { width: 44px; height: 44px; border-radius: 8px; }
+    .mini-logos .mini-bottom-left,
+    .mini-logos .mini-bottom-right { display: none; }
+}
+
+@media (min-width: 1200px) {
+    .mini-logos .mini-logo { width: 64px; height: 64px; border-radius: 12px; }
+    .mini-logos .mini-top-left { top: 1.5rem; left: 1.5rem; }
 }
