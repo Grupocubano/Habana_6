@@ -47,7 +47,7 @@ html {
     padding: 0.35rem 0.6rem;
     border-radius: 6px;
     z-index: 1000;
-    transform: translateY(-120%);
+    transform: translateY(-180%);
     transition: transform 180ms ease;
 }
 .skip-link:focus {
@@ -64,6 +64,7 @@ img, picture, video, iframe {
 
 body {
     margin: 0;
+    overflow-x: hidden;
     font-family: "Manrope", sans-serif;
     color: var(--ink);
     background:
@@ -154,6 +155,7 @@ body::before {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+    z-index: 20;
     margin: 0 auto 4rem;
     max-width: var(--max-width);
     padding: 0.95rem 1.2rem;
@@ -188,16 +190,16 @@ body::before {
 .brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 1rem;
     font-family: "Bebas Neue", sans-serif;
-    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-size: clamp(2.15rem, 4vw, 3rem);
     letter-spacing: 0.08em;
     color: var(--gold-strong);
 }
 
 .brand img {
-    width: 4.8rem;
-    height: 4.8rem;
+    width: 5.8rem;
+    height: 5.8rem;
     object-fit: cover;
     border-radius: 50%;
     border: 2px solid rgba(215, 177, 105, 0.55);
@@ -206,8 +208,8 @@ body::before {
 
 /* Large header logo at inicio (desktop) */
 .home-hero .brand img {
-    width: 5.6rem;
-    height: 5.6rem;
+    width: 6.6rem;
+    height: 6.6rem;
 }
 
 .nav-links a {
@@ -602,11 +604,12 @@ body::before {
 /* Instrumentos en dorado: aplicar la clase `instrument-golden` al contenedor o a la imagen */
 .instrument-golden img,
 .instrument-golden {
-    filter: sepia(0.9) saturate(2.8) hue-rotate(-10deg) brightness(1.03) contrast(1.04);
-    mix-blend-mode: multiply;
+    filter: sepia(0.45) saturate(1.8) hue-rotate(-8deg) brightness(1.08) contrast(1.06);
+    mix-blend-mode: normal;
     transition: filter 220ms ease, transform 220ms ease;
 }
-.instrument-golden img:hover {
+.instrument-golden img:hover,
+.instrument-golden:hover {
     transform: scale(1.02);
 }
 
@@ -958,6 +961,7 @@ body::before {
 
 .story-grid {
     grid-template-columns: 1.3fr 0.9fr;
+    align-items: center;
 }
 
 .story-text {
@@ -982,13 +986,15 @@ body::before {
 }
 
 .story-mark {
-    margin-top: 1.5rem;
+    justify-self: end;
+    width: 100%;
+    margin-top: 0;
 }
 
 .story-mark img {
     width: 100%;
-    max-width: 320px;
-    aspect-ratio: 4 / 5;
+    max-width: 460px;
+    aspect-ratio: 4 / 3;
     padding: 0.45rem;
     object-fit: cover;
     object-position: center top;
@@ -1014,27 +1020,6 @@ body::before {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 1rem;
-}
-
-/* Instruments gallery */
-.instruments-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1rem;
-    max-width: var(--max-width);
-    margin: 1.25rem auto 0;
-}
-.instruments-grid figure {
-    margin: 0;
-    overflow: hidden;
-    border-radius: 16px;
-    border: 1px solid rgba(240, 212, 146, 0.12);
-}
-.instruments-grid img {
-    display: block;
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
 }
 
 .member-card {
@@ -1555,13 +1540,16 @@ body::before {
 .home-hero {
     min-height: 88svh;
     padding-bottom: 2.4rem;
-    /* show the full photo on all devices and reduce luminosity using a dark overlay */
+    /* Keep the group photo clear while preserving contrast for the hero text. */
     background-color: #04101f;
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.46), rgba(0,0,0,0.36)), url("img/Foto_Todos.jpeg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    background-blend-mode: multiply, normal;
+    background-image:
+        linear-gradient(90deg, rgba(3, 11, 21, 0.76) 0%, rgba(3, 11, 21, 0.38) 46%, rgba(3, 11, 21, 0.08) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.08)),
+        url("img/Foto_Todos.jpeg");
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center center, center center, center center;
+    background-size: cover, cover, contain;
+    background-blend-mode: normal;
 }
 
 .home-hero::before {
@@ -1819,12 +1807,15 @@ body::before {
     }
 }
 
-/* Mobile menu: hide nav links and show toggle under 768px */
-@media (max-width: 768px) {
+/* Mobile menu: hide nav links and show toggle on narrower layouts */
+@media (max-width: 900px) {
     .nav {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        width: 100%;
+        max-width: 100%;
         position: relative;
         align-items: center;
-        flex-wrap: wrap;
         padding: 0.85rem 1rem;
     }
 
@@ -1832,13 +1823,15 @@ body::before {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        margin-left: auto;
+        justify-self: end;
+        margin-left: 0;
     }
 
     .nav-links {
         display: flex;
+        grid-column: 1 / -1;
         position: static;
-        flex: 0 0 100%;
+        flex: none;
         width: 100%;
         background: rgba(7, 23, 43, 0.92);
         color: var(--white);
@@ -1881,6 +1874,19 @@ body::before {
         margin-top: 0.75rem;
         padding: 0.35rem 1rem;
     }
+
+    .subpage-intro h1 {
+        max-width: 100%;
+        font-size: clamp(2rem, 8.6vw, 2.8rem);
+        line-height: 1.03;
+        letter-spacing: 0;
+        overflow-wrap: break-word;
+        text-wrap: balance;
+    }
+
+    .subpage-intro .lead {
+        overflow-wrap: break-word;
+    }
 }
 
 @media (max-width: 720px) {
@@ -1889,9 +1895,22 @@ body::before {
         border-radius: 24px;
     }
 
-    .brand img {
-        width: 3.6rem;
-        height: 3.6rem;
+    .brand {
+        min-width: 0;
+        gap: 0.75rem;
+        font-size: clamp(1.65rem, 6.2vw, 2rem);
+        letter-spacing: 0.06em;
+    }
+
+    .brand img,
+    .home-hero .brand img {
+        width: 3.9rem;
+        height: 3.9rem;
+    }
+
+    .brand span {
+        min-width: 0;
+        white-space: nowrap;
     }
 
     .hero,
@@ -1936,6 +1955,11 @@ body::before {
 
     .subpage-intro h1 {
         max-width: 100%;
+        font-size: clamp(2rem, 8.6vw, 2.45rem);
+        line-height: 1.03;
+        letter-spacing: 0;
+        overflow-wrap: break-word;
+        text-wrap: balance;
     }
 
     .subpage-actions {
@@ -1974,7 +1998,7 @@ body::before {
 
     .home-hero {
         background:
-            linear-gradient(180deg, rgba(3, 11, 21, 0.82) 0%, rgba(4, 16, 31, 0.86) 48%, rgba(6, 21, 42, 0.96) 100%),
+            linear-gradient(180deg, rgba(3, 11, 21, 0.48) 0%, rgba(4, 16, 31, 0.54) 48%, rgba(6, 21, 42, 0.86) 100%),
             url("img/Foto_Todos.jpeg") center top / cover no-repeat;
     }
 
@@ -2086,27 +2110,33 @@ body::before {
 }
 .mini-logos .mini-logo {
     position: fixed;
-    width: 72px;
-    height: 72px;
+    width: 82px;
+    height: 82px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 16px;
     border: 2px solid rgba(215, 177, 105, 0.94);
     box-shadow: 0 20px 36px rgba(1, 8, 18, 0.6);
-    z-index: 9999;
-    opacity: 1;
+    z-index: 8;
+    opacity: 0.96;
     transition: transform 220ms ease, opacity 220ms ease;
     filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45));
 }
-.mini-logos .mini-top-left { top: 1rem; left: 1rem; }
-.mini-logos .mini-top-right { top: 1rem; right: 1rem; }
-.mini-logos .mini-bottom-left { bottom: 1rem; left: 1rem; }
-.mini-logos .mini-bottom-right { bottom: 1rem; right: 1rem; }
+.mini-logos .instrument-golden {
+    filter: sepia(0.45) saturate(1.8) hue-rotate(-8deg) brightness(1.08) contrast(1.06) drop-shadow(0 6px 14px rgba(0,0,0,0.45));
+}
+.mini-logos .mini-top-left { top: clamp(6.5rem, 10vw, 8.75rem); left: clamp(0.75rem, 2vw, 1.5rem); }
+.mini-logos .mini-top-right { top: clamp(6.5rem, 10vw, 8.75rem); right: clamp(0.75rem, 2vw, 1.5rem); }
+.mini-logos .mini-bottom-left { bottom: 1rem; left: clamp(0.75rem, 2vw, 1.5rem); }
+.mini-logos .mini-bottom-right { bottom: 1rem; right: clamp(0.75rem, 2vw, 1.5rem); }
 
 @media (max-width: 720px) {
-    .mini-logos .mini-logo { width: 56px; height: 56px; border-radius: 10px; }
+    .mini-logos .mini-logo { width: 54px; height: 54px; border-radius: 11px; opacity: 0.9; }
+    .mini-logos .mini-top-left,
+    .mini-logos .mini-top-right { top: 8.3rem; }
+    .mini-logos .mini-bottom-left,
+    .mini-logos .mini-bottom-right { bottom: 0.75rem; }
 }
 
 @media (min-width: 1200px) {
-    .mini-logos .mini-logo { width: 84px; height: 84px; border-radius: 14px; }
-    .mini-logos .mini-top-left { top: 1.5rem; left: 1.5rem; }
+    .mini-logos .mini-logo { width: 96px; height: 96px; border-radius: 18px; }
 }

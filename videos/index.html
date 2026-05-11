@@ -120,7 +120,7 @@
                 function setOpen(open) {
                     toggle.setAttribute("aria-expanded", String(open));
                     nav.classList.toggle("is-open", open);
-                    document.body.classList.toggle("menu-open", open && window.innerWidth <= 768);
+                    document.body.classList.toggle("menu-open", open && window.innerWidth <= 900);
                 }
 
                 toggle.addEventListener("click", function () {
@@ -130,14 +130,14 @@
 
                 navAnchors.forEach(function (anchor) {
                     anchor.addEventListener("click", function () {
-                        if (window.innerWidth <= 768) {
+                        if (window.innerWidth <= 900) {
                             setOpen(false);
                         }
                     });
                 });
 
                 document.addEventListener("click", function (event) {
-                    if (window.innerWidth > 768) {
+                    if (window.innerWidth > 900) {
                         return;
                     }
 
@@ -147,7 +147,7 @@
                 });
 
                 window.addEventListener("resize", function () {
-                    if (window.innerWidth > 768) {
+                    if (window.innerWidth > 900) {
                         setOpen(false);
                     }
                 });
@@ -155,7 +155,7 @@
         })();
     </script>
     <div class="mini-logos" aria-hidden="true">
-        <img src="/Habana_5/img/Foto_Roby.jpeg" class="mini-logo mini-bottom-left instrument-golden" alt="">
+        <img src="/Habana_5/img/foto_percusion.jpeg" class="mini-logo mini-bottom-left instrument-golden" alt="">
     </div>
 </body>
 </html>

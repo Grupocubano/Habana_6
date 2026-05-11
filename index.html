@@ -95,29 +95,6 @@
                 </article>
             </div>
         </section>
-        <section class="section instruments" aria-labelledby="instruments-title">
-            <div class="section-heading">
-                <p class="eyebrow">Nuestros sonidos</p>
-                <h2 id="instruments-title">Instrumentos</h2>
-            </div>
-            <div class="instruments-grid">
-                <figure>
-                    <img src="/Habana_5/img/foto_bajo.jpeg" class="instrument-golden" alt="Bajo">
-                </figure>
-                <figure>
-                    <img src="/Habana_5/img/foto_percusion.jpeg" class="instrument-golden" alt="Percusión">
-                </figure>
-                <figure>
-                    <img src="/Habana_5/img/foto_percumenor.jpeg" class="instrument-golden" alt="Percusión menor">
-                </figure>
-                <figure>
-                    <img src="/Habana_5/img/foto_trescubano.jpeg" class="instrument-golden" alt="Tres cubano">
-                </figure>
-                <figure>
-                    <img src="/Habana_5/img/foto_voz.jpeg" class="instrument-golden" alt="Voz">
-                </figure>
-            </div>
-        </section>
     </main>
 
     <footer class="site-footer">
@@ -164,7 +141,7 @@
                 function setOpen(open) {
                     toggle.setAttribute("aria-expanded", String(open));
                     nav.classList.toggle("is-open", open);
-                    document.body.classList.toggle("menu-open", open && window.innerWidth <= 768);
+                    document.body.classList.toggle("menu-open", open && window.innerWidth <= 900);
                 }
 
                 toggle.addEventListener("click", function () {
@@ -174,14 +151,14 @@
 
                 navAnchors.forEach(function (anchor) {
                     anchor.addEventListener("click", function () {
-                        if (window.innerWidth <= 768) {
+                        if (window.innerWidth <= 900) {
                             setOpen(false);
                         }
                     });
                 });
 
                 document.addEventListener("click", function (event) {
-                    if (window.innerWidth > 768) {
+                    if (window.innerWidth > 900) {
                         return;
                     }
 
@@ -191,15 +168,12 @@
                 });
 
                 window.addEventListener("resize", function () {
-                    if (window.innerWidth > 768) {
+                    if (window.innerWidth > 900) {
                         setOpen(false);
                     }
                 });
             }
         })();
     </script>
-    <div class="mini-logos" aria-hidden="true">
-        <img src="/Habana_5/img/Foto_Todos.jpeg" class="mini-logo mini-top-left instrument-golden" alt="">
-    </div>
 </body>
 </html>
